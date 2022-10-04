@@ -1,10 +1,14 @@
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         task1();
         task2();
         task3();
+        task4();
+        task5();
+        task6();
 
     }
 
@@ -104,4 +108,103 @@ public class Main {
             System.out.println("Потребуется дней: " + deliveryPeriod);
         }
     }
+
+    public static void sortArray(int[] array) {
+
+        int storage = 0;
+        int middleArray = 0;
+
+        middleArray = (int) (array.length / 2) + 1;
+
+        for (int i : array) {
+            storage = array[i - 1];
+            array[i - 1] = array[array.length - i];
+            array[array.length - i] = storage;
+            if (i == middleArray) {
+                break;
+            }
+        }
+
+    }
+
+    public static void task4() {
+        System.out.println();
+        System.out.println("Задание №4. Повышенная сложность");
+
+        int[] arr = {5, 4, 3, 2, 1};
+        System.out.println(Arrays.toString(arr));
+
+        sortArray(arr);
+
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void cheakDuplicatesString(String stringToTest) {
+
+        char originalSymbol;
+        char duplicateSymbol;
+
+        for (int i = 0; i < stringToTest.length(); i++){
+            originalSymbol = stringToTest.charAt(i);
+            for (int y = 0; y < stringToTest.length(); y++){
+                duplicateSymbol = stringToTest.charAt(y);
+                if (i != y && originalSymbol == duplicateSymbol){
+                    System.out.println("В исходной строке обнаружен дубль символа: " + duplicateSymbol);
+                    return;
+                }
+            }
+        }
+    }
+
+    public static void task5() {
+        System.out.println();
+        System.out.println("Задание №5. Повышенная сложность");
+
+        String initialString = "aabccddefgghiijjkk";
+        cheakDuplicatesString(initialString);
+
+    }
+
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
+    }
+
+    public static int calculateTotalSum(int[] arr) {
+        int totalSum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            totalSum = totalSum + arr[i];
+        }
+
+        return totalSum;
+    }
+
+    public static double calculateAverageValueInMonth(int totalSum, int length) {
+        return (double) totalSum / length;
+    }
+
+    public static void calculateAndPrintAverageValueInMonth(int[] arr) {
+        int totalSum;
+        double averageValueInMonth = 0;
+
+        totalSum = calculateTotalSum(arr);
+        averageValueInMonth = calculateAverageValueInMonth(totalSum, arr.length);
+
+        System.out.println("Средняя сумма трат за месяц составила - " + averageValueInMonth + " рублей");
+    }
+
+    public static void task6() {
+        System.out.println();
+        System.out.println("Задание №6. Повышенная сложность");
+
+        int[] arr = generateRandomArray();
+        calculateAndPrintAverageValueInMonth(arr);
+    }
+
+
 }
